@@ -1,2 +1,18 @@
 {% extends 'data_analysis_app/base.html' %}
 
+{% block content %}
+
+<div class="d-flex justify-content-center" style="margin-top: 10%;">
+        <div class="form-group">
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="formFile" class="form-label mt-4">Input .cvs file</label>
+                <input class="form-control" type="file" id="formFile">
+                <div class="d-flex justify-content-center">
+                    <input class="btn btn-primary" type="submit" value="Submit" style="margin: 5%;"/>
+                </div>
+            </form>
+        </div>
+</div>
+
+{% endblock %}

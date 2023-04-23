@@ -19,6 +19,29 @@
   </div>
 </nav>
 
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error'%}
+        <div class="d-flex justify-content-end" style="text-align: center;">
+            <div id="msg" class="alert alert-dismissible alert-danger" style="margin: 1%; width: 20%;">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Wrong credentials!</strong>
+            </div>
+        </div>
+        {% endif %}
+        {% if message.tags == 'success'%}
+        <div class="d-flex justify-content-end" style="text-align: center;">
+            <div id="msg" class="alert alert-dismissible alert-success" style="margin: 1%; width: 20%;">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Success!</strong>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
 {% block content %}
 {% endblock %}
 
