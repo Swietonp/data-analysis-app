@@ -12,7 +12,9 @@ def main_page(request):
             messages.error(request, 'Incorrect data!')
         else:
             messages.success(request, 'Success!')
-            request.session['data'] = data.to_html(index=False)
+            request.session['data'] = data.to_html(
+                index=False, classes='table table-striped table-bordered table-hover table-sm')\
+                .replace('<tr style="text-align: right;">', '<tr>')
             return redirect('/results')
 
     return render(request, 'data_analysis_app/index.html')
