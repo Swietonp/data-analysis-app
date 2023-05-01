@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .data_processing import load_data
+
+import pandas as pd
 
 
 def main_page(request):
@@ -12,5 +14,16 @@ def main_page(request):
             messages.error(request, 'Incorrect data!')
         else:
             messages.success(request, 'Success!')
+            request.session['data'] = data.to_html()
+            return redirect('/results')
 
     return render(request, 'data_analysis_app/index.html')
+
+
+def results_page(request):
+
+    context = {
+        'data': request.session.get('data')
+    }
+
+    return render(request, 'data_analysis_app/results.html', context)
