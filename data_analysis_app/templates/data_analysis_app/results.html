@@ -3,9 +3,13 @@
 {% block content %}
 
 <h1 class="d-flex justify-content-center" style="margin: 2%;">Results</h1>
-
 <div style="text-align: center; margin: 2%;">
     {{ data | safe }}
+</div>
+
+<h2 class="d-flex justify-content-center" style="margin: 2%;">Summary</h2>
+<div style="text-align: center; margin: 2%; margin-left: 5%; margin-right: 5%;">
+    {{ summary | safe }}
 </div>
 
 {% endblock %}
