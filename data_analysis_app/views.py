@@ -17,7 +17,7 @@ def main_page(request):
                     index=False, classes='table table-striped table-bordered table-hover table-sm')\
                     .replace('<tr style="text-align: right;">', '<tr>')
                 request.session['summary'] = data.describe().to_html(
-                    classes='table table-hover table-light')\
+                    classes='table table-hover table-light table-sm')\
                     .replace('<tr style="text-align: right;">', '<tr>')
                 return redirect('/results')
         except:
