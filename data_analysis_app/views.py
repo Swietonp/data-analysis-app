@@ -19,6 +19,11 @@ def main_page(request):
                 request.session['summary'] = data.describe().to_html(
                     classes='table table-hover table-light table-sm')\
                     .replace('<tr style="text-align: right;">', '<tr>')
+                numeric_data = data.select_dtypes(include='number')
+                numeric_data_dict = {}
+                for column in numeric_data.columns:
+                    numeric_data_dict[column] = numeric_data[column].to_list()
+                request.session['numeric_data'] = numeric_data_dict
                 return redirect('/results')
         except:
             messages.error(request, 'No data!')
