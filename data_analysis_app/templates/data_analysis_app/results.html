@@ -17,13 +17,13 @@
     </div>
 
     <div class="card border-primary mb-3" style="margin: 3%; min-width: 20%;">
-        <div class="card-header">Plotting</div>
+        <div class="card-header">Visualization</div>
         <div class="card-body">
             <div class="d-flex justify-content-center" style="margin: 4%;">
                 <button type="button" class="btn btn-primary" onclick="open2dPlottingPopup()">2D plot</button>
             </div>
             <div class="d-flex justify-content-center" style="margin: 4%;">
-                <button type="button" class="btn btn-primary">3D plot</button>
+                <button type="button" class="btn btn-primary" onclick="open3dPlottingPopup()">3D plot</button>
             </div>
         </div>
     </div>
@@ -100,6 +100,48 @@
   </div>
 </div>
 
+
+<!--3D PLOTTING-->
+<div id="3dPlottingPopup" class="popup-container">
+  <div class="popup-content">
+    <button class="close-btn" onclick="close2dPlottingPopup()">&times;</button>
+    <h3>3D plotting</h3>
+
+      {% with column_dict=request.session.numeric_data %}
+      <div class="form-group">
+          <label for="xAxisSelect" class="form-label mt-4">Select X axis</label>
+          <select class="form-select" id="3DxAxisSelect">
+             {% for column_name in column_dict.keys %}
+                <option value="{{ column_name }}">{{ column_name }}</option>
+             {% endfor %}
+          </select>
+      </div>
+
+      <div class="form-group">
+          <label for="yAxisSelect" class="form-label mt-4">Select Y axis</label>
+          <select class="form-select" id="3DyAxisSelect">
+             {% for column_name in column_dict.keys %}
+                <option value="{{ column_name }}">{{ column_name }}</option>
+             {% endfor %}
+          </select>
+      </div>
+
+      <div class="form-group">
+          <label for="yAxisSelect" class="form-label mt-4">Select Y axis</label>
+          <select class="form-select" id="3DzAxisSelect">
+             {% for column_name in column_dict.keys %}
+                <option value="{{ column_name }}">{{ column_name }}</option>
+             {% endfor %}
+          </select>
+      </div>
+      {% endwith %}
+
+      <button id="3dPlotBtn" class="btn btn-success" style="margin: 3%;">Plot</button>
+
+  </div>
+</div>
+
+
 <script>
 
   function openDataViewPopup() {
@@ -133,6 +175,23 @@
   function close2dPlotCanvasPopup() {
     document.getElementById("2dPlotCanvasPopup").style.display = "none";
   }
+
+  function open3dPlottingPopup() {
+    document.getElementById("3dPlottingPopup").style.display = "flex";
+  }
+
+  function close3dPlottingPopup() {
+    document.getElementById("3dPlottingPopup").style.display = "none";
+  }
+
+  function open3dPlotCanvasPopup() {
+    document.getElementById("3dPlotCanvasPopup").style.display = "flex";
+  }
+
+  function close3dPlotCanvasPopup() {
+    document.getElementById("3dPlotCanvasPopup").style.display = "none";
+  }
+
 
 <!--  2D PLOTTING-->
     {% with data_dict=request.session.numeric_data %}
